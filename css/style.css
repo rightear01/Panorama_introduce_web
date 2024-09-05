@@ -1,0 +1,599 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+ol,
+ul {
+    list-style: none;
+}
+a {
+    outline: 0;
+    text-decoration: none;
+}
+img {
+    border: 0;
+}
+
+body {
+    font: 17px/1.4 'Orbitron', 'Arial';
+    letter-spacing: 1px;
+    color: #ddd;
+    background-color: #000;
+}
+
+.wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    perspective: 1300px;
+}
+
+.wrap > video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: fixed;
+    opacity: 0.5;
+}
+
+.wrap #circle {
+    width: 600px;
+    height: 800px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -400px;
+    margin-left: -300px;
+    /* 3D로 보이기 위해 preserve-3d */
+    /* 
+        transform-style: preserve-3d;의 의미
+        3D 공간 유지: preserve-3d를 사용하면 부모 요소와 자식 요소가 동일한 3D 공간을 공유하게 됩니다.
+        이를 통해 자식 요소의 3D 변환이 부모의 3D 변환과 상호작용하게 됩니다.
+        즉, 자식 요소가 부모의 3D 변환 효과를 유지하면서 렌더링됩니다.
+
+        기본값과 차이: 기본값은 transform-style: flat;이며,
+        이는 자식 요소의 3D 변환을 무시하고 2D 평면으로 평면화하여 렌더링합니다.
+        반면에 preserve-3d를 사용하면 자식 요소의 3D 변환이 그대로 유지됩니다. 
+
+    */
+    transform-style: preserve-3d;
+    animation: ani linear 30s infinite;
+}
+
+.wrap #circle article {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+/*face1*/
+.wrap #circle .face1 .inner > div {
+    width: 290px;
+    height: 254px;
+    float: left;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.wrap #circle .face1 .inner > div p i {
+    font-size: 100px;
+    transition: all 0.5s;
+    opacity: 0.7;
+}
+
+.wrap #circle .face1 .inner > div h2 {
+    margin-top: 20px;
+    letter-spacing: 2px;
+    transition: all 0.5s;
+}
+.wrap #circle .face1 .inner > div:nth-of-type(odd) {
+    margin-right: 20px;
+}
+.wrap #circle .face1 .inner > div:hover i {
+    color: lightcyan;
+    text-shadow: 0px 0px 10px aqua;
+    transform: scale(1.2);
+    opacity: 1;
+}
+.wrap #circle article .inner > div:hover h2 {
+    color: lightcyan;
+    text-shadow: 0px 0px 10px aqua;
+}
+.wrap #circle article h1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 30px;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+/* article에 커서가 올라가면 제목이 위로 서서히 나타남 */
+.wrap #circle article:hover h1 {
+    top: -60px;
+    opacity: 1;
+}
+
+.wrap #circle article .inner {
+    width: 100%;
+    height: 100%;
+}
+
+.wrap #circle article .inner > div {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 50px;
+    position: relative;
+    opacity: 0.7;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.wrap #circle article.inner > div:hover h2 {
+    color: lightcyan;
+    text-shadow: 0px 0px 10px aqua;
+}
+
+.wrap #circle article .inner > div:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.03);
+    opacity: 1;
+}
+
+.wrap #circle article .inner > div:hover i {
+    color: lightcyan;
+    text-shadow: 0px 0px 10px aqua;
+    transform: scale(1.2);
+    transitino: all 0.5s;
+}
+
+/*face2*/
+.wrap #circle .face2 .inner > div {
+    width: 100%;
+    height: 100%;
+}
+
+.wrap #circle .face2 .inner > div img {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.wrap #circle .face2 .inner > div h3 {
+    color: #ffff;
+    margin-bottom: 20px;
+}
+
+.wrap #circle .face2 .inner > div p {
+    font: 18px/1.3 'Arial';
+    color: #ccc;
+}
+
+/*face3*/
+.wrap #circle .face3 .inner > div {
+    width: 100%;
+    height: 253px;
+    margin-bottom: 20px;
+}
+
+/*얼굴 이미지가 들어갈 공간*/
+.wrap #circle .face3 .inner > div .pic {
+    width: 120px;
+    height: 120px;
+    background-repeat: no-repeat;
+    /* 이미지를 중앙보다 위로 */
+    background-position: center top;
+    overflow: hidden;
+    border-radius: 60px;
+    border: 1px solid #fff;
+    float: left;
+    position: relative;
+    top: 15px;
+    background-size: cover;
+}
+
+/*배경 이미지 처리*/
+.wrap #circle .face3 .inner > div:nth-of-type(1) .pic {
+    background-image: url('../img/member1.jpg');
+}
+
+.wrap #circle .face3 .inner > div:nth-of-type(2) .pic {
+    background-image: url('../img/member2.jpg');
+}
+
+.wrap #circle .face3 .inner > div:nth-of-type(3) .pic {
+    background-image: url('../img/member3.jpg');
+}
+
+.wrap #circle .face3 .inner > div .con {
+    width: 340px;
+    float: right;
+}
+
+.wrap #circle .face3 .inner > div .con h2 {
+    font: 18px/1.3 'arial';
+    color: #ddd;
+    margin-top: 20px;
+}
+
+.wrap #circle .face3 .inner > div .con span {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    font: 12px/1 'Orbitron';
+    color: aqua;
+    opacity: 0.5;
+}
+
+/*face4*/
+.wrap #cirlce .face4 .inner > div p {
+    font: 16px/1.3 'arial';
+    color: #bbb;
+    margin-top: 20px;
+}
+
+.wrap #circle .face4 .inner > div:nth-of-type(1) {
+    width: 100%;
+    height: 600px;
+    margin-bottom: 20px;
+}
+
+.wrap #circle .face4 .inner > div:nth-of-type(1) video {
+    width: 100%;
+    border: 1px solid #fff;
+    margin-bottom: 30px;
+}
+
+.wrap #circle .face4 .inner > div:nth-of-type(2) {
+    width: 100%;
+    height: 180px;
+}
+
+.wrap #circle .face4 .inner > div:nth-of-type(2) p {
+    float: left;
+}
+
+.wrap #circle .face4 .inner > div:nth-of-type(2) em {
+    float: right;
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 23px;
+}
+
+/* face5 */
+.wrap #circle .face5 .inner > div {
+    width: 100%;
+    height: 100%;
+}
+
+.wrap #circle .face5 .inner div img {
+    margin-bottom: 40px;
+}
+
+.wrap #circle .face5 .inner div .pic {
+    width: 100%;
+    height: 250px;
+    border: 1px solid #bbb;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.3) url('../img/robot.png') center center/cover no-repeat;
+    /* background: [background-color] [background-image] [background-position] / [background-size] [background-repeat]; */
+    margin-bottom: 50px;
+}
+
+.wrap #circle .face5 .inner div .reflection {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transition: all 0.7s;
+}
+
+.wrap #circle .face5:hover .inner div .reflection {
+    top: -40%;
+}
+
+/* face6 */
+.wrap #circle .face6 .inner > div {
+    width: 100%;
+    height: 185px;
+    margin-bottom: 20px;
+}
+
+.wrap #circle .face6 .inner > div i {
+    width: 22%;
+    height: 100%;
+    border-right: 1px solid #bbb;
+    float: left;
+    font-size: 50px;
+    color: #fff;
+    position: relative;
+    text-align: left;
+    line-height: 90px;
+    box-sizing: border-box;
+    padding-left: 15px;
+}
+
+.wrap #circle .face6 .inner > div .con {
+    float: right;
+    width: 75%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 40px;
+}
+
+.wrap #circle .face6 .inner > div .con p {
+    font: 18px/1 'arial';
+    color: #999;
+}
+
+.wrap #circle .face7 .inner > div {
+    width: 100%;
+    height: 100%;
+}
+
+.wrap #circle .face7 .inner > div > div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #aaa;
+    box-sizing: border-box;
+}
+
+.wrap #circle .face7 .inner > div > div video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+.wrap #circle .face7 .inner > div > div h2 {
+    position: absolute;
+    top: 140px;
+    left: 50px;
+    text-align: left;
+    color: #fff;
+    line-height: 1.1;
+    text-shadow: 2px 2px 5px #555;
+    z-index: 2;
+}
+
+.wrap #circle .face7 .inner > div > div img:nth-of-type(1) {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.wrap #circle .face7 .inner > div > div img:nth-of-type(2) {
+    position: absolute;
+    bottom: 85px;
+    right: -18px;
+    width: 90%;
+}
+
+/* face 8 */
+.wrap #circle .face8 .inner > div:nth-of-type(1) {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(1) i {
+    color: #fff;
+    font-size: 200px;
+    position: absolute;
+    bottom: 60px;
+    left: 50px;
+    opacity: 0.9;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(1) span {
+    font-weight: bold;
+    font-size: 120px;
+    position: absolute;
+    bottom: 60px;
+    right: 60px;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(1) span em {
+    font: bold normal 60px/1 'Arial';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(2) {
+    width: 290px;
+    height: 380px;
+    margin-right: 20px;
+    float: left;
+    text-align: center;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(2) i {
+    font-size: 120px;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(2) h3 {
+    margin-top: 30px;
+    margin-bottom: 14px;
+    font: bold 20px/1 'orbitron';
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(2) p {
+    font: 16px/1 'Arial';
+    color: #ccc;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(2) h4 {
+    font-size: 40px;
+    margin-top: 20px;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(2) h4 b {
+    font: bold 24px/1 'Arial';
+    color: #ddd;
+    position: absolute;
+    top: 0px;
+    right: 40px;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(3) {
+    width: 290px;
+    height: 380px;
+    float: left;
+    text-align: center;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(3) i {
+    font-size: 120px;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(3) h3 {
+    margin-top: 30px;
+    margin-bottom: 14px;
+    font: bold 20px/1 'orbitron';
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(3) p {
+    font: 16px/1 'Arial';
+    color: #ccc;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(3) h4 {
+    font-size: 40px;
+    margin-top: 20px;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.wrap #circle .face8 .inner > div:nth-of-type(3) h4 b {
+}
+
+.wrap #circle .face1 {
+    display: block;
+}
+
+.wrap #circle .face2 {
+    display: block;
+}
+
+.wrap #circle .face3 {
+    display: block;
+}
+
+.wrap #circle .face4 {
+    display: block;
+}
+
+.wrap #circle .face5 {
+    display: block;
+}
+
+.wrap #circle .face6 {
+    display: block;
+}
+
+.wrap #circle .face7 {
+    display: block;
+}
+
+.wrap #circle .face8 {
+    display: block;
+}
+
+/* 각 박스를 3D 형태로 배치하기 */
+/*
+    각 박스를 z축으로 보내서 원통 모양으로 만들기
+    translateZ의 기본 개념
+    Z축: X축(수평)과 Y축(수직)과는 달리 Z축은 화면을 기준으로 깊이 방향을 나타냅니다.
+    양의 값은 화면 밖으로(사용자 쪽으로) 나오는 방향이고,
+    음의 값은 화면 안으로 들어가는 방향을 나타냅니다.
+
+    현재 구상한 article의 width는 600px이고 해당 요소들의 배치는 원형이다.(0 ~ 315 deg)
+    3차원 공간의 위에서 이를 밑으로 보았을 때에 이들은 600px * 8인 4800px의 원의 둘래를 갖게 된다.
+    이 점을 이용하여 반지름의 길이만큼 translateZ로 사용자의 방향에서 화면쪽으로 보이게 하려면,
+    원의 중심축을 기준으로 반지름 만큼 화면 안쪽으로 배치하면 된다.
+    
+    원의 둘래 : 반지름 * 2 * 3.14
+
+    반지름
+    ((600px * 8)/3.14) / 2 이므로 화면 안쪽으로 배치하기 위해 translateZ( " - 결과값을 취한다. " )
+    
+    하지만 전채 원이 회전하고 있는 상황에서 다른 요소와 겹쳐서 돌아가고 사용자 방향에 출력되는 이미지는
+    요소의 뒷면이기 때문에, backface-visibility: hidden 을 사용하여 사용자 방향으로 출력되는 요소들을 숨김처리한다.
+
+    backface-visibility: hidden; ->  반대쪽인 뒷면을 숨김 처리한다.
+   
+    이 속성을 사용하면 3D 회전 시 요소가 화면을 향하지 않는 경우,
+    즉 뒷면이 보이는 상황에서 해당 뒷면을 숨길 수 있습니다. 
+*/
+
+.face1 {
+    transform: rotateY(0deg) translateZ(-764px);
+}
+
+.face2 {
+    transform: rotateY(45deg) translateZ(-764px);
+}
+
+.face3 {
+    transform: rotateY(90deg) translateZ(-764px);
+}
+
+.face4 {
+    transform: rotateY(135deg) translateZ(-764px);
+}
+
+.face5 {
+    transform: rotateY(180deg) translateZ(-764px);
+}
+
+.face6 {
+    transform: rotateY(225deg) translateZ(-764px);
+}
+
+.face7 {
+    transform: rotateY(270deg) translateZ(-764px);
+}
+
+.face8 {
+    transform: rotateY(315deg) translateZ(-764px);
+}
+
+.wrap #circle article {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    backface-visibility: hidden;
+    /*반대쪽인 뒷면을 숨김 처리한다.*/
+    /* 이 속성을 사용하면 3D 회전 시 요소가 화면을 향하지 않는 경우,
+     즉 뒷면이 보이는 상황에서 해당 뒷면을 숨길 수 있습니다. */
+}
+
+/* UI 전체를 animation으로 회전시키기 */
+@keyframes ani {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
